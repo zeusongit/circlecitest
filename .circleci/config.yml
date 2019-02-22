@@ -23,3 +23,7 @@ jobs:
       - run:
           name: Validate Packer Template
           command: ./packer validate ubuntu-ami-template.json
+      - run:
+          name: Build AMI
+          command: |
+            ./packer build ubuntu-ami-template.json
