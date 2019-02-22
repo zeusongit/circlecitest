@@ -1,27 +1,25 @@
 {
-  "name": "nodeapp",
+  "name": "node-server",
   "version": "1.0.0",
-  "description": "Sample app to test circle ci",
-  "main": "index.js",
+  "description": "",
+  "main": "app.js",
   "scripts": {
-    "test": "mocha"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/zeusongit/circlecitest.git"
-  },
-  "keywords": [
-    "nodejs",
-    "circleci"
-  ],
-  "author": "Ashish",
+  "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/zeusongit/circlecitest/issues"
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
+    "dotenv": "^6.2.0",
+    "express": "^4.16.4",
+    "http-errors": "^1.7.1",
+    "mocha": "^5.2.0",
+    "mysql": "^2.16.0",
+    "nodemon": "^1.18.9"
   },
-  "homepage": "https://github.com/zeusongit/circlecitest#readme",
   "devDependencies": {
-    "chai": "^4.2.0",
-    "mocha": "^5.2.0"
+    "chai": "^4.2.0"
   }
 }
