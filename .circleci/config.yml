@@ -13,9 +13,7 @@ jobs:
           command: sudo pip install awscli
       - run:
           name: Configure AWS-CLI
-          command: aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID && \
-            aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY && \
-            aws configure set region us-east-1
+          command: aws --version
       - run:
           name: Download packer
           command: |
