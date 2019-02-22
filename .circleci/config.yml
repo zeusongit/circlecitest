@@ -18,7 +18,4 @@ jobs:
           name: Working Directory
           command: |
             pwd
-            mkdir testdir
-            cd testdir 
-            echo "This is some sample test, going in a sample file." > sample.txt
             ls -al
