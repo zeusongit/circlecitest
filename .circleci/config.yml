@@ -13,7 +13,9 @@ jobs:
           command: sudo pip install awscli
       - run:
           name: Configure AWS-CLI
-          command: aws --version    
+          command: |
+            aws --version    
+            aws configure set default.region us-east-1
       - run:
           name: Zip Artifact
           command: |
