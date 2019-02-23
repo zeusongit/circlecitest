@@ -18,10 +18,14 @@ jobs:
             aws configure set default.region $AWS_REGION
       - run:
           name: Setup Node Application
-          command: npm install
+          command: |
+            cd ./webapp
+            npm install
       - run:
           name: Run Tests
-          command: npm test             
+          command: |
+            npm test  
+            cd ..          
       - run:
           name: Zip Artifact
           command: |
