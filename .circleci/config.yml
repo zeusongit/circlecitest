@@ -7,7 +7,13 @@ jobs:
       - checkout
       - run:
           name: Install packages
-          command: sudo apt-get update -y
+          command: sudo apt-get update && sudo apt-get install wget zip unzip && sudo apt-get install python-dev && sudo apt-get install python-pip -y
+      - run:
+          name: Install awscli
+          command: sudo pip install awscli
+      - run:
+          name: Configure AWS-CLI
+          command: aws --version    
       - run:
           name: Zip Artifact
           command: |
@@ -26,6 +32,9 @@ jobs:
             mv codedeploy_artifact-$TRAVIS_JOB_NUMBER.zip ./finalbuild
             pwd
             ls -al
+      - run:
+          name: Deploy to S3
+          command: aws s3 sync ./finalbuild/codedeploy_artifact-$TRAVIS_JOB_NUMBER.zip  s3://csye6225-circleci-lab/ --delete
 deployment:
   staging:
     branch: master
