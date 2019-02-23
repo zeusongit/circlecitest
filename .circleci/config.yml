@@ -24,11 +24,12 @@ jobs:
       - run:
           name: Run Tests
           command: |
-            npm test  
-            cd ..          
+            cd ./webapp
+            npm test          
       - run:
           name: Zip Artifact
           command: |
+            cd .
             pwd
             ls -al
             mkdir codedeploy_artifact
