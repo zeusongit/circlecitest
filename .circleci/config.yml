@@ -7,13 +7,7 @@ jobs:
       - checkout
       - run:
           name: Install packages
-          command: sudo apt-get update && sudo apt-get install wget zip unzip && sudo apt-get install python-dev && sudo apt-get install python-pip -y
-      - run:
-          name: Install awscli
-          command: sudo pip install awscli
-      - run:
-          name: Configure AWS-CLI
-          command: aws --version    
+          command: sudo apt-get update -y
       - run:
           name: Zip Artifact
           command: |
@@ -22,7 +16,7 @@ jobs:
             mkdir codedeploy_artifact
             cp codedeploy/*.sh ./codedeploy_artifact/
             cp codedeploy/*.yml ./codedeploy_artifact/
-            cp webapp ./codedeploy_artifact/
+            cp -r ./webapp ./codedeploy_artifact/
             cd codedeploy_artifact/
             pwd
             ls -al
