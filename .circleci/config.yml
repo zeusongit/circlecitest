@@ -15,13 +15,39 @@ jobs:
           name: Configure AWS-CLI
           command: aws --version
       - run:
-          name: Working Directory
-          command: |
-            pwd
-            ls -al
-      - run:
           name: Setup Node Application
           command: npm install
       - run:
           name: Run Tests
           command: npm test      
+      - run:
+          name: Zip Artifact
+          command: |
+            pwd
+            ls -al
+            mkdir codedeploy_artifact
+            cp codedeploy/*.sh ./codedeploy_artifact/
+            cp codedeploy/*.yml ./codedeploy_artifact/
+            cp webapp ./codedeploy_artifact/
+            cd codedeploy_artifact/
+            pwd
+            ls -al
+            cd ..
+            zip -r codedeploy_artifact-$TRAVIS_JOB_NUMBER.zip ./codedeploy_artifact >/dev/null
+            mkdir finalbuild
+            mv codedeploy_artifact-$TRAVIS_JOB_NUMBER.zip ./finalbuild
+            pwd
+            ls -al
+deployment:
+  staging:
+    branch: master
+    codedeploy:
+      codedeploy-application:
+        application_root: /finalbuild
+        revision_location:
+          revision_type: S3
+          s3_location:
+            bucket: csye6225-circleci-lab
+            key_pattern: codedeploy_artifact-$TRAVIS_JOB_NUMBER
+        region: us-east-1
+        deployment_group: codedeploy-dg
