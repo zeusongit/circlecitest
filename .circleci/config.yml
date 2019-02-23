@@ -15,7 +15,7 @@ jobs:
           name: Configure AWS-CLI
           command: |
             aws --version    
-            aws configure set default.region us-east-1
+            aws configure set default.region $AWS_REGION
       - run:
           name: Zip Artifact
           command: |
@@ -40,9 +40,8 @@ jobs:
             ls -al
       - run:
           name: Deploy to S3
-          command: aws s3 sync ./finalbuild/  s3://csye6225-circleci-lab/ --delete
+          command: echo "Put commands to upload to s3 here."
       - run:
           name: Deploy
-          command: |
-            aws deploy create-deployment --application-name codedeploy-application --deployment-group-name codedeploy-dg --s3-location bucket=csye6225-circleci-lab,bundleType=zip,key=codedeploy_artifact-$CIRCLE_BUILD_NUM.zip
+          command: echo "Put commands to trigger CodeDeploy here." 
 
