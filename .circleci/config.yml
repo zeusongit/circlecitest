@@ -13,13 +13,7 @@ jobs:
           command: sudo pip install awscli
       - run:
           name: Configure AWS-CLI
-          command: aws --version
-      - run:
-          name: Setup Node Application
-          command: npm install
-      - run:
-          name: Run Tests
-          command: npm test      
+          command: aws --version    
       - run:
           name: Zip Artifact
           command: |
@@ -48,6 +42,6 @@ deployment:
           revision_type: S3
           s3_location:
             bucket: csye6225-circleci-lab
-            key_pattern: codedeploy_artifact-$TRAVIS_JOB_NUMBER
+            key_pattern: codedeploy_artifact-$TRAVIS_JOB_NUMBER.zip
         region: us-east-1
         deployment_group: codedeploy-dg
