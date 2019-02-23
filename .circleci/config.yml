@@ -38,7 +38,7 @@ jobs:
             ls -al
       - run:
           name: Deploy to S3
-          command: aws s3 sync ./finalbuild/codedeploy_artifact-$CIRCLE_BUILD_NUM.zip  s3://csye6225-circleci-lab/ --delete
+          command: aws s3 sync ./finalbuild/  s3://csye6225-circleci-lab/ --delete
 deployment:
   staging:
     branch: master
