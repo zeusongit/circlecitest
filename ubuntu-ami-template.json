@@ -30,7 +30,7 @@
                 "FOO=foo"
             ],
             "inline": [
-                "sudo apt-get update -y",
+                "sudo apt-get update && sudo apt-get install wget zip unzip -y",
                 "curl -sL https://deb.nodesource.com/setup_10.x -o nodesource_setup.sh",
                 "echo 'running sudo bash' && sudo bash nodesource_setup.sh",
                 "echo 'running nodejs install' && sudo apt install nodejs -y",
