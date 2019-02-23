@@ -51,7 +51,7 @@ jobs:
             ls -al
       - run:
           name: Deploy to S3
-          command: echo "Put commands to upload to s3 here."
+          command: echo "Put commands to upload to s3 here.."
       - run:
           name: Deploy
           command: echo "Put commands to trigger CodeDeploy here." 
