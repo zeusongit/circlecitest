@@ -39,16 +39,8 @@ jobs:
       - run:
           name: Deploy to S3
           command: aws s3 sync ./finalbuild/  s3://csye6225-circleci-lab/ --delete
-deployment:
-  staging:
-    branch: master
-    codedeploy:
-      codedeploy-application:
-        application_root: /finalbuild
-        revision_location:
-          revision_type: S3
-          s3_location:
-            bucket: csye6225-circleci-lab
-            key_pattern: codedeploy_artifact-$CIRCLE_BUILD_NUM.zip
-        region: us-east-1
-        deployment_group: codedeploy-dg
+      - run:
+          name: Deploy
+          command: |
+            aws deploy create-deployment --application-name codedeploy-application --deployment-group-name codedeploy-dg --s3-location bucket=csye6225-circleci-lab,bundleType=zip,key=codedeploy_artifact-$CIRCLE_BUILD_NUM.zip
+
